@@ -1,15 +1,16 @@
 import {Body, Controller, Get, Param, Post, Put, Req, Res, UsePipes} from '@nestjs/common';
-import {SistemOperativoService} from './sistemOperativo.service';
-import {SistemaOperativoPipe} from './sistemaOperativo.pipe';
+
 import {SISTEMAOPERATIVO_SCHEMA} from './sistemaOperativo.schema';
-import {PeticionInvalidaException} from "../exceptions/peticionInvalida.exception";
 import {error} from "util";
-import {NoEncontradoException} from "../exceptions/noEncontrado.exception";
+import {NotfoundException} from "../excepciones/notfound.exception";
+import {BadRequestException} from "../excepciones/badRequest.exception";
+import {SistemaOperativoService} from "./sistemaOperativo.service";
+import {SistemaOperativoPipe} from "./sistemaOperativo.pipe";
 
 @Controller('SistemaOperativo')
-export class SistemOperativoController {
+export class SistemaOperativoController{
 
-    constructor(private _sistemaOperativoService: SistemOperativoService) {
+    constructor(private _sistemaOperativoService: SistemaOperativoService) {
 
     }
 
@@ -33,7 +34,7 @@ export class SistemOperativoController {
         if (SistemaOperativoCreado) {
             return nuevoSistemaOperativo;
         } else {
-            throw new PeticionInvalidaException (
+            throw new BadRequestException (
                 'Petición Inválida, los datos ingresados no son suficientes',
                 error,
                 10
@@ -50,7 +51,7 @@ export class SistemOperativoController {
             return response.send(eqp);
         }
         else {
-            throw  new NoEncontradoException(
+            throw  new NotfoundException(
                 'Id No encontrado',
                 error,
                 10
@@ -68,7 +69,7 @@ export class SistemOperativoController {
             return response.send(update);
         }
         else {
-            throw  new NoEncontradoException(
+            throw  new NotfoundException(
                 'Id No encontrado',
                 error,
                 10

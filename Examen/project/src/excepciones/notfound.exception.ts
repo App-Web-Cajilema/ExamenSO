@@ -1,7 +1,8 @@
+
 import {HttpException, HttpStatus} from "@nestjs/common";
 
 
-export class PeticionNotfoundException extends HttpException {
+export class NotfoundException extends HttpException {
     constructor(private _mensaje,
                 private _detalle,
                 private _nivelError) {

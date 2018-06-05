@@ -1,7 +1,7 @@
-import {Injectable} from '@nestjs/common';
+import {Injectable} from '@nestjs/common/index';
 
 @Injectable()
-export class SistemOperativoService {
+export class SistemaOperativoService{
     sistemas_operativos: SistemasOperativos[] = [];
 
     crearSistemasOperativos(sistemas_operativos: SistemasOperativos): SistemasOperativos[] {

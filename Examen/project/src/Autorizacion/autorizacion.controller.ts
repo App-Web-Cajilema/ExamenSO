@@ -1,14 +1,15 @@
 import {Body, Controller, Post, Req, Res} from "@nestjs/common";
-import {PeticionErroneaException} from "../excepciones/peticion-erronea.exception";
+
 import {error} from "util";
+import {BadRequestException} from "../excepciones/badRequest.exception";
 
 
 @Controller('Autorizacion')
 export class AutorizacionController{
 
     usuario = {
-        usuario: 'wilsonramos',
-        password: 1234567890,
+        usuario: 'katherinecajilema',
+        password: 12345678910,
     };
 
 
@@ -28,7 +29,7 @@ export class AutorizacionController{
             })
 
         } else {
-            throw new PeticionErroneaException(
+            throw new BadRequestException(
                 'No se puede iniciar Sesion, datos de ingreso invalidos',
                 error,
                 10)

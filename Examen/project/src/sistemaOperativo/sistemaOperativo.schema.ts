@@ -5,7 +5,7 @@ export const SISTEMAOPERATIVO_SCHEMA = Joi.object().keys({
     nombre: Joi.string().max(30).required(),
     versionApi: Joi.number().required(),
     fechaLanzamiento: Joi.string().required(),
-    pesonEnGigas: Joi.number().required(),
+    pesoEnGigas: Joi.number().required(),
     instalado: Joi.boolean().required(),
 
 });

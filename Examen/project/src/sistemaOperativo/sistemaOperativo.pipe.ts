@@ -1,7 +1,8 @@
-import {ArgumentMetadata, Injectable} from '@nestjs/common';
+import  {ArgumentMetadata, Injectable} from '@nestjs/common';
 import * as Joi from 'joi';
-import {PeticionInvalidaException} from '../exceptions/peticionInvalida.exception';
-import {NoEncontradoException} from "../exceptions/noEncontrado.exception";
+
+import {NotfoundException} from "../excepciones/notfound.exception";
+import {BadRequestException} from "../excepciones/badRequest.exception";
 
 @Injectable()
 export class SistemaOperativoPipe {
@@ -19,13 +20,13 @@ export class SistemaOperativoPipe {
         }
             = Joi.validate(jsonAValidar, this._schema);
         if (error) {
-            throw new PeticionInvalidaException(
+            throw new BadRequestException(
                 'Petición Inválida',
                 error,
                 10)
         }
         if (errorNotFound) {
-            throw  new NoEncontradoException(
+            throw  new NotfoundException(
                 'No encontrado',
                 errorNotFound,
                 3

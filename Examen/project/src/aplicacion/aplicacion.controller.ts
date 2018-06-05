@@ -2,9 +2,9 @@ import {Body, Controller, Get, Param, Post, Put, Req, Res, UsePipes} from '@nest
 import {AplicacionService} from './aplicacion.service';
 import {AplicacionPipe} from './aplicacion.pipe';
 import {APLICACION_SCHEMA} from './aplicacion.schema';
-import {PeticionInvalidaException} from "../exceptions/peticionInvalida.exception";
 import {error} from "util";
-import {NoEncontradoException} from "../exceptions/noEncontrado.exception";
+import {NotfoundException} from "../excepciones/notfound.exception";
+import {BadRequestException} from "../excepciones/badRequest.exception";
 
 @Controller('Aplicacion')
 export class AplicacionController{
@@ -28,7 +28,7 @@ export class AplicacionController{
             return nuevaApp;
 
         } else {
-            throw new PeticionInvalidaException(
+            throw new BadRequestException(
                 'Petición Inválida, los datos ingresados no son suficientes',
                 error,
                 10
@@ -45,7 +45,7 @@ export class AplicacionController{
             return response.send(app);
         }
         else {
-            throw  new NoEncontradoException(
+            throw  new NotfoundException(
                 'Id No encontrado',
                 error,
                 10
@@ -63,7 +63,7 @@ export class AplicacionController{
         if (update) {
             return response.send(update);
         } else {
-            throw  new NoEncontradoException(
+            throw  new NotfoundException(
                 'Id No encontrado',
                 error,
                 10
